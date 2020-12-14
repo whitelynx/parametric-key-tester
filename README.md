@@ -1,5 +1,7 @@
 # Parameterized Key Tester Frame
 
+![Action Shot](images/action-shot.jpg)
+
 This Python app allows you to generate `.scad` and `.stl` files for key tester frames, supporting
 arbitrary `m x n` sizes.
 
