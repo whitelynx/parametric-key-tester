@@ -23,6 +23,12 @@ openscad -o ~/key-tester-3x5.stl ~/key-tester-3x5.scad
 ```
 
 
+## Links
+
+* [Hackaday.io](https://hackaday.io/project/176329-parameterized-key-tester-frame)
+* [Thingiverse](https://www.thingiverse.com/thing:4685209)
+
+
 ## License
 
 This project is released under [the BSD 3-Clause License](https://opensource.org/licenses/BSD-3-Clause).
