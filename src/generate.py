@@ -32,16 +32,16 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    filepath=join(
+    filepath = join(
         dirname(dirname(abspath(__file__))),
-        'files',
-        args.output or f"key_grid_tester_{args.length}x{args.width}.scad"
+        "files",
+        args.output or f"key_grid_tester_{args.length}x{args.width}.scad",
     )
 
-    print(filepath)
+    print(f"Writing {args.length}x{args.width} key tester frame to {filepath} . . .")
 
     scad_render_to_file(
         key_grid_tester(args.length, args.width),
         filepath=filepath,
-        include_orig_code=True
+        include_orig_code=True,
     )
