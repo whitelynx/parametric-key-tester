@@ -19,3 +19,8 @@ Once you have generated a `.scad` file, you can use OpenSCAD to generate a `.stl
 ```bash
 openscad -o ~/key-tester-3x5.stl ~/key-tester-3x5.scad
 ```
+
+
+## License
+
+This project is released under [the MIT License](https://opensource.org/licenses/MIT).
