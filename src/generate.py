@@ -4,7 +4,7 @@ from os.path import abspath, dirname, join
 
 from solid import *
 
-from key_grid_tester import key_grid_tester
+from key_grid_tester import key_grid_tester, default_wall_height
 
 
 if __name__ == "__main__":
@@ -20,6 +20,32 @@ if __name__ == "__main__":
         metavar="WIDTH",
         type=int,
         help="the width of the tester, in number of keys",
+    )
+    parser.add_argument(
+        "--height",
+        metavar="MM",
+        type=float,
+        default=default_wall_height,
+        help="the height of the walls of the tester",
+    )
+    parser.add_argument(
+        "--margin-length",
+        metavar="MM",
+        type=float,
+        default=0,
+        help="an extra margin along the length axis to add inside the walls",
+    )
+    parser.add_argument(
+        "--margin-width",
+        metavar="MM",
+        type=float,
+        default=0,
+        help="an extra margin along the width axis to add inside the walls",
+    )
+    parser.add_argument(
+        "--function-row",
+        action="store_true",
+        help="special mode to make a function row to fit next to another keyboard",
     )
     parser.add_argument(
         "-o",
@@ -41,7 +67,14 @@ if __name__ == "__main__":
     print(f"Writing {args.length}x{args.width} key tester frame to {filepath} . . .")
 
     scad_render_to_file(
-        key_grid_tester(args.length, args.width),
+        key_grid_tester(
+            args.length,
+            args.width,
+            wall_height=args.height,
+            margin_length=args.margin_length,
+            margin_width=args.margin_width,
+            function_row=args.function_row
+        ),
         filepath=filepath,
         include_orig_code=True,
     )
