@@ -1,5 +1,5 @@
-from solid import *
-from solid.utils import *
+from solid import rotate, cube, hull, scad_render_to_file
+from solid.utils import up, left, right, forward, back
 
 from utils import cylinder_outer
 

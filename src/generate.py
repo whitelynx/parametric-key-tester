@@ -2,7 +2,7 @@
 import argparse
 from os.path import abspath, dirname, join
 
-from solid import *
+from solid import scad_render_to_file
 
 from key_grid_tester import key_grid_tester, default_wall_height
 

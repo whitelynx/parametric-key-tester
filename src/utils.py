@@ -1,8 +1,7 @@
 from collections.abc import Sequence
 from math import pi, cos
 
-from solid import *
-from solid.utils import *
+from solid import cylinder
 
 
 def cylinder_outer(r, h, segments=16, center=False):

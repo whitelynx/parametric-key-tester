@@ -1,5 +1,5 @@
-from solid import *
-from solid.utils import *
+from solid import cube, mirror, scad_render_to_file
+from solid.utils import up, down, left, forward, back
 
 
 SEGMENTS = 48

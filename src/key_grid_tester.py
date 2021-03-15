@@ -1,5 +1,5 @@
-from solid import *
-from solid.utils import *
+from solid import rotate, cube
+from solid.utils import up, left, right, forward, back
 
 from board_mount import pro_mini
 from switch_plate import (
