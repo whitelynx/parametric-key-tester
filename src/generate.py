@@ -73,7 +73,7 @@ if __name__ == "__main__":
             wall_height=args.height,
             margin_length=args.margin_length,
             margin_width=args.margin_width,
-            function_row=args.function_row
+            function_row=args.function_row,
         ),
         filepath=filepath,
         include_orig_code=True,

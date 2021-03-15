@@ -48,6 +48,7 @@ def key_grid_tester_wall_dimensions(
 
     return wall_length, wall_width
 
+
 def key_grid_tester_walls(
     length_units, width_units, wall_height, margin_length, margin_width
 ):
@@ -106,20 +107,17 @@ def key_grid_tester(
 
         def position_board(part):
             return left(board_left)(
-                up(board_up)(
-                    forward(board_forward)(
-                        rotate((0, -90, 90))(
-                            part
-                        )
-                    )
-                )
+                up(board_up)(forward(board_forward)(rotate((0, -90, 90))(part)))
             )
 
-        return case - left(wall_width / 2 - 20)(
-            cube((15, length_units * y_grid_size * 2, 23 * 2), center=True)
-        ) \
-            + position_board(pro_mini.render(3)) \
-            - position_board(pro_mini.board_profile(3)) \
+        return (
+            case
+            - left(wall_width / 2 - 20)(
+                cube((15, length_units * y_grid_size * 2, 23 * 2), center=True)
+            )
+            + position_board(pro_mini.render(3))
+            - position_board(pro_mini.board_profile(3))
             - right(100)(cube((200, 200, 200), center=True))
+        )
 
     return case
