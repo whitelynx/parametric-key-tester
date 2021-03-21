@@ -1,5 +1,5 @@
 from solid import rotate, cube
-from solid.utils import up, left, right, forward, back
+from solid.utils import up, down, left, right, forward, back
 
 from board_mount import pro_mini
 from switch_plate import (
@@ -9,6 +9,7 @@ from switch_plate import (
     mount_width,
     mount_length,
 )
+from utils import nothing
 
 
 switch_spacing = 2
@@ -101,11 +102,14 @@ def key_grid_tester(
             length_units, width_units, wall_height, margin_length, margin_width
         )
 
-        board_left = wall_width / 2 - 80
+        board_left = wall_width / 2 - 70
         board_up = 10
         board_forward = wall_length / 2 - wall_thickness
 
         def position_board(part):
+            if length_units == 1:
+                return left(board_left)(down(1)(rotate((0, 0, 90))(part)))
+
             return left(board_left)(
                 up(board_up)(forward(board_forward)(rotate((0, -90, 90))(part)))
             )
@@ -115,9 +119,11 @@ def key_grid_tester(
             - left(wall_width / 2 - 20)(
                 cube((15, length_units * y_grid_size * 2, 23 * 2), center=True)
             )
-            + position_board(pro_mini.render(3))
+            + (nothing if length_units == 1 else position_board(pro_mini.render(3)))
             - position_board(pro_mini.board_profile(3))
-            - right(100)(cube((200, 200, 200), center=True))
+            - left(100 + (x_grid_size / 2 if width_units % 2 else 0))(
+                cube((200, 200, 200), center=True)
+            )
         )
 
     return case

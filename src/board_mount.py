@@ -79,8 +79,7 @@ class BoardMount:
         )
 
 
-# (def board-pro-mini [18 33.1 1.6])
-pro_mini = BoardMount(18, 33.1, 1.6)
+pro_mini = BoardMount(18.3, 33.1, 1.7)
 
 
 if __name__ == "__main__":
