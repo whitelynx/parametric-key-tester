@@ -20,10 +20,7 @@ from switch_plate import (
 
 
 def function_row(
-    width_units,
-    wall_height=default_wall_height,
-    margin_length=0,
-    margin_width=0
+    width_units, wall_height=default_wall_height, margin_length=0, margin_width=0
 ):
     x_grid_size = mount_width + switch_spacing
     y_grid_size = mount_length + switch_spacing
@@ -114,8 +111,8 @@ if __name__ == "__main__":
             args.output or f"function_row_{args.width}_{side}.scad",
         )
 
-    left_filepath = build_filepath('left')
-    right_filepath = build_filepath('right')
+    left_filepath = build_filepath("left")
+    right_filepath = build_filepath("right")
 
     print(f"Building {args.width}-key function row frame . . .")
 
