@@ -43,11 +43,6 @@ if __name__ == "__main__":
         help="an extra margin along the width axis to add inside the walls",
     )
     parser.add_argument(
-        "--function-row",
-        action="store_true",
-        help="special mode to make a function row to fit next to another keyboard",
-    )
-    parser.add_argument(
         "-o",
         "--output",
         metavar="FILE",
@@ -73,7 +68,6 @@ if __name__ == "__main__":
             wall_height=args.height,
             margin_length=args.margin_length,
             margin_width=args.margin_width,
-            function_row=args.function_row,
         ),
         filepath=filepath,
         include_orig_code=True,
