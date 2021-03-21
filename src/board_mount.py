@@ -79,12 +79,12 @@ class BoardMount:
         )
 
 
-pro_mini = BoardMount(18.3, 33.1, 1.7)
+pro_micro = BoardMount(18.3, 33.1, 1.7)
 
 
 if __name__ == "__main__":
     scad_render_to_file(
-        pro_mini.render(5) + up(20)(pro_mini.render(5) + pro_mini.board_profile(5)),
+        pro_micro.render(5) + up(20)(pro_micro.render(5) + pro_micro.board_profile(5)),
         file_header=f"$fn = {SEGMENTS};",
         include_orig_code=True,
     )

@@ -5,7 +5,7 @@ from os.path import abspath, dirname, join
 from solid import cube, rotate, scad_render_to_file
 from solid.utils import up, down, left, right, forward
 
-from board_mount import pro_mini
+from board_mount import pro_micro
 from key_grid_tester import (
     default_wall_height,
     key_grid_tester,
@@ -57,7 +57,7 @@ def function_row(
         - left(wall_width / 2 - 20)(
             cube((15, 1 * y_grid_size * 2, 23 * 2), center=True)
         )
-        - position_board(pro_mini.board_profile(3))
+        - position_board(pro_micro.board_profile(3))
     )
 
     big_block = cube((200, 200, 200), center=True)
