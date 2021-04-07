@@ -12,3 +12,7 @@ def cylinder_outer(r, h, segments=16, center=False):
 
 
 nothing = cube((1, 1, 1), center=True) - cube((2, 2, 2), center=True)
+
+
+def optional(condition):
+    return lambda part: part if condition else nothing
