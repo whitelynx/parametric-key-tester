@@ -1,7 +1,7 @@
 from solid import rotate, cube, hull, scad_render_to_file
 from solid.utils import up, left, right, forward, back
 
-from utils import cylinder_outer
+from utils import cylinder_outer, optional
 
 
 SEGMENTS = 48
@@ -18,10 +18,11 @@ def mount_post_m2(height):
 
 
 class BoardMount:
-    def __init__(self, board_width, board_length, board_thickness):
+    def __init__(self, board_width, board_length, board_thickness, has_connector=True):
         self.board_width = board_width
         self.board_length = board_length
         self.board_thickness = board_thickness
+        self.has_connector = has_connector
 
         # Distance from the front edge of the board to the front of the large portion of the plug
         self.plug_offset = 2
@@ -29,7 +30,7 @@ class BoardMount:
         # Length of the plug clearance volume
         self.plug_length = 20
 
-    def board_profile(self, distance_from_surface):
+    def pcb_only(self, distance_from_surface):
         return up(distance_from_surface + self.board_thickness / 2)(
             back(self.board_length / 2)(
                 cube(
@@ -37,25 +38,36 @@ class BoardMount:
                     center=True,
                 )
             )
-        ) + up(distance_from_surface - 1.25)(
-            forward(self.plug_offset)(
-                rotate((90, 0, 0))(
-                    hull()(
-                        left(4 - 1.25)(cylinder_outer(2.5 / 2, 6)),
-                        right(4 - 1.25)(cylinder_outer(2.5 / 2, 6)),
+        )
+
+    def connector(self, distance_from_surface):
+        return optional(self.has_connector)(
+            up(distance_from_surface - 1.25)(
+                forward(self.plug_offset)(
+                    rotate((90, 0, 0))(
+                        hull()(
+                            left(4 - 1.25)(cylinder_outer(2.5 / 2, 6)),
+                            right(4 - 1.25)(cylinder_outer(2.5 / 2, 6)),
+                        )
                     )
                 )
-            )
-            + forward(self.plug_offset + self.plug_length)(
-                rotate((90, 0, 0))(
-                    hull()(
-                        left(4 - 1.25)(cylinder_outer(8.5 / 2, self.plug_length)),
-                        right(4 - 1.25)(cylinder_outer(8.5 / 2, self.plug_length)),
+                + forward(self.plug_offset + self.plug_length)(
+                    rotate((90, 0, 0))(
+                        hull()(
+                            left(4 - 1.25)(cylinder_outer(8.5 / 2, self.plug_length)),
+                            right(4 - 1.25)(cylinder_outer(8.5 / 2, self.plug_length)),
+                        )
                     )
                 )
             )
         )
-        # TODO: Add connector profile and maybe pin clearance!
+
+    def board_profile(self, distance_from_surface):
+        return (
+            self.pcb_only(distance_from_surface)
+            + self.connector(distance_from_surface)
+        )
+        # TODO: Maybe add pin clearance!
 
     def mounting_posts(self, distance_from_surface):
         positioning_post_height = distance_from_surface + self.board_thickness + 3
