@@ -179,7 +179,7 @@ def function_row(
             cube((15, 1 * y_grid_size * 2, 23 * 2), center=True)
         )
         #- position_board(pro_micro.board_profile(3))
-        + position_mounting_points(cylinder(r1=wall_thickness, r2=0, h=15, segments=16))
+        + position_mounting_points(cylinder(wall_thickness * 2 / 3, wall_height, segments=16))
         - position_mounting_points(down(2)(cylinder_outer(m2_shaft_radius, 10)))
     )
 
