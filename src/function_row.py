@@ -2,7 +2,7 @@
 import argparse
 from os.path import abspath, dirname, join
 
-from solid import cube, rotate, scad_render_to_file
+from solid import cube, cylinder, rotate, scad_render_to_file
 from solid.utils import up, down, left, right, forward, back
 
 from board_mount import BoardMount, pro_micro, m2_shaft_radius
@@ -73,7 +73,7 @@ def control_box(wall_length, wall_width, wall_height):
             )
         )
 
-    center_post_length = max_board_thickness + 2.5
+    center_post_length = max_board_thickness + 3
     center_post_offset_right = (
         case_width / 2
         - wall_thickness * 1.5
@@ -155,6 +155,22 @@ def function_row(
         wall_length, wall_width, wall_height
     )
 
+    split_offset = x_grid_size / 2 if width_units % 2 else 0
+
+    def position_mounting_points(part):
+        x_offset = wall_width / 2 - wall_thickness
+        y_offset = wall_length / 2 - wall_thickness
+        return (
+            left(x_offset)(forward(y_offset)(part))
+            + right(x_offset)(forward(y_offset)(part))
+            + left(x_offset)(back(y_offset)(part))
+            + right(x_offset)(back(y_offset)(part))
+            + right(split_offset - wall_thickness)(forward(y_offset)(part))
+            + right(split_offset + wall_thickness)(forward(y_offset)(part))
+            + right(split_offset - wall_thickness)(back(y_offset)(part))
+            + right(split_offset + wall_thickness)(back(y_offset)(part))
+        )
+
     full_case = (
         case
         - control_box_cutout
@@ -163,13 +179,14 @@ def function_row(
             cube((15, 1 * y_grid_size * 2, 23 * 2), center=True)
         )
         #- position_board(pro_micro.board_profile(3))
+        + position_mounting_points(cylinder(r1=wall_thickness, r2=0, h=15, segments=16))
+        - position_mounting_points(down(2)(cylinder_outer(m2_shaft_radius, 10)))
     )
 
     big_block = cube((200, 200, 200), center=True)
-    center_offset = x_grid_size / 2 if width_units % 2 else 0
 
     alignment_tab = cube((wall_thickness, wall_thickness / 2, wall_height - wall_thickness), center=True)
-    alignment_tabs = right(center_offset)(
+    alignment_tabs = right(split_offset)(
         up((wall_height - wall_thickness) / 2)(
             forward(wall_length / 2 - wall_thickness)(alignment_tab)
             + back(wall_length / 2 - wall_thickness)(alignment_tab)
@@ -179,12 +196,12 @@ def function_row(
     return (
         (
             full_case
-            - right(100 + center_offset)(big_block)
+            - right(100 + split_offset)(big_block)
             + alignment_tabs
         ),
         (
             full_case
-            - left(100 - center_offset)(big_block)
+            - left(100 - split_offset)(big_block)
             - alignment_tabs
         ),
     )
