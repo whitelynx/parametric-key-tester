@@ -8,6 +8,13 @@ arbitrary `m x n` sizes.
 In the `files/` directory, example output files for 1x1, 2x2, 3x3, and 4x4 sizes are included.
 
 
+## Prerequisites
+
+You'll need the following Python packages installed:
+
+- [solidpython](https://github.com/SolidCode/SolidPython) (TODO: Upgrade to SolidPython V2)
+
+
 ## Usage
 
 You can generate other sizes using the `src/generate.py` script; example:
