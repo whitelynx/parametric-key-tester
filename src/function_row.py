@@ -2,8 +2,7 @@
 import argparse
 from os.path import abspath, dirname, join
 
-from solid import cube, cylinder, rotate, scad_render_to_file
-from solid.utils import up, down, left, right, forward, back
+from solid2 import cube, cylinder, rotate, scad_render_to_file, up, down, left, right, forward, back
 
 from board_mount import BoardMount, pro_micro, m2_shaft_radius
 from key_grid_tester import (
@@ -269,13 +268,11 @@ if __name__ == "__main__":
     print(f"Writing left side to {left_filepath} . . .")
     scad_render_to_file(
         left_side,
-        filepath=left_filepath,
-        include_orig_code=True,
+        filename=left_filepath,
     )
 
     print(f"Writing right side to {right_filepath} . . .")
     scad_render_to_file(
         right_side,
-        filepath=right_filepath,
-        include_orig_code=True,
+        filename=right_filepath,
     )

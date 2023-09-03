@@ -1,5 +1,4 @@
-from solid import rotate, cube
-from solid.utils import up, left, right, forward, back
+from solid2 import rotate, cube, up, left, right, forward, back
 
 from switch_plate import (
     switch_plate,

@@ -10,9 +10,16 @@ In the `files/` directory, example output files for 1x1, 2x2, 3x3, and 4x4 sizes
 
 ## Prerequisites
 
-You'll need the following Python packages installed:
+You can install prerequisites with `pip`:
 
-- [solidpython](https://github.com/SolidCode/SolidPython) (TODO: Upgrade to SolidPython V2)
+```bash
+pip install -r requirements.txt
+```
+
+
+This will install the following Python packages:
+
+- [solidpython2](https://github.com/jeff-dh/SolidPython)
 
 
 ## Usage
