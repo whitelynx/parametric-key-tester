@@ -1,5 +1,15 @@
 # Parameterized Key Tester Frame
 
+---
+
+[![Moved to Codeberg](https://img.shields.io/badge/moved_to-Codeberg-%232185D0?logo=codeberg&logoColor=white)][codeberg project]
+
+**Notice: This project has [moved to Codeberg.org][codeberg project]. All further development will take place there.**
+
+[codeberg project]: https://codeberg.org/whitelynx/parametric-key-tester
+
+---
+
 ![Action Shot](images/action-shot.jpg)
 
 This Python app allows you to generate `.scad` and `.stl` files for key tester frames, supporting
